@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Construction.Shared.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Construction.API.Data
 {
@@ -8,10 +9,13 @@ namespace Construction.API.Data
         {
         }
 
+        public DbSet<ProjectConstruction> ProjectConstructions { get; set; }
+        public DbSet<ConstructionTeam> ConstructionTeams { get; set; }
+        public DbSet<Dutie> Duties { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            //modelBuilder.Entity<Owner>().HasIndex(c => c.Name).IsUnique();
         }
 
     }
