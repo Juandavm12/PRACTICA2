@@ -46,4 +46,4 @@ namespace Construction.Shared.Entities
 
     }
 }
-}
+
