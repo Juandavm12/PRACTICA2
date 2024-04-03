@@ -12,6 +12,7 @@ namespace Construction.API.Data
         public DbSet<ProjectConstruction> ProjectConstructions { get; set; }
         public DbSet<ConstructionTeam> ConstructionTeams { get; set; }
         public DbSet<Dutie> Duties { get; set; }
+        public DbSet<Equipment> Equipments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
