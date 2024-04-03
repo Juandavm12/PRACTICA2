@@ -1,0 +1,38 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Construction.Shared.Entities
+{
+    public class Budget
+    {
+        //Attributes
+
+        public int Id { get; set; }
+
+        [Display(Name = "Presupuesto equipo de construccion ")]       
+        [Required(ErrorMessage = "El campo {0} es obligatorio")]
+        public double BudgetConstructionTeam { get; set; }
+
+        [Display(Name = "Presupuesto ede tareas ")]
+        [Required(ErrorMessage = "El campo {0} es obligatorio")]
+        public double BudgetDutie { get; set; }
+
+        [Display(Name = "Presupuesto de maquinaria ")]
+        [Required(ErrorMessage = "El campo {0} es obligatorio")]
+        public double BudgetEquipment { get; set; }
+
+        [Display(Name = "Presupuesto proyecto de construccion ")]
+        [Required(ErrorMessage = "El campo {0} es obligatorio")]
+        public double BudgetProyectConstruction { get; set; }
+
+        [Display(Name = "Presupuesto total ")]
+        [Required(ErrorMessage = "El campo {0} es obligatorio")]
+        public double BudgetTotal { get; set; }      
+
+        public string Remarks { get; set; }
+    }
+}
