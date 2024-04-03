@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace Construction.Shared.Entities
 {
-    public class Dutie
+    public class Material
     {
-        //Attributes
-
         public int Id { get; set; }
 
         [Display(Name = "Nombre")]
@@ -18,19 +16,15 @@ namespace Construction.Shared.Entities
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         public string Name { get; set; }
 
-        [Display(Name = "Descripcion")]
-        [MaxLength(100, ErrorMessage = "No se permiten mas de 100 caracteres")]
+        public double RequiredQuantity { get; set; }
+
+        [Display(Name = "Proveedor")]
+        [MaxLength(20, ErrorMessage = "No se permiten mas de 20 caracteres")]
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
-        public string Description { get; set; }
+        public string Supplier { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
-        public DateTime StartTime { get; set; }
-
-        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
-        [Required(ErrorMessage = "El campo {0} es obligatorio")]
-        public DateTime EndTime { get; set; }
-
-        public string Remarks { get; set; } 
+        public DateTime EstimatedDeliveryTime { get; set; }
     }
 }
