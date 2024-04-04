@@ -144,6 +144,9 @@ namespace Construction.API.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<int?>("DutiesId")
+                        .HasColumnType("int");
+
                     b.Property<string>("MaintenanceState")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -161,6 +164,8 @@ namespace Construction.API.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("DutiesId");
 
                     b.HasIndex("ProjectConstructionsId");
 
@@ -187,7 +192,7 @@ namespace Construction.API.Migrations
 
                     b.HasIndex("ProjectConstructionsId");
 
-                    b.ToTable("EquipmentAssignment");
+                    b.ToTable("EquipmentAssignments");
                 });
 
             modelBuilder.Entity("Construction.Shared.Entities.Material", b =>
@@ -224,7 +229,7 @@ namespace Construction.API.Migrations
                     b.ToTable("Materials");
                 });
 
-            modelBuilder.Entity("Construction.Shared.Entities.MaterialAssigment", b =>
+            modelBuilder.Entity("Construction.Shared.Entities.MaterialAssignment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -244,7 +249,7 @@ namespace Construction.API.Migrations
 
                     b.HasIndex("MaterialsId");
 
-                    b.ToTable("MaterialAssigment");
+                    b.ToTable("MaterialAssignments");
                 });
 
             modelBuilder.Entity("Construction.Shared.Entities.ProjectConstruction", b =>
@@ -302,9 +307,15 @@ namespace Construction.API.Migrations
 
             modelBuilder.Entity("Construction.Shared.Entities.Equipment", b =>
                 {
+                    b.HasOne("Construction.Shared.Entities.Dutie", "Duties")
+                        .WithMany()
+                        .HasForeignKey("DutiesId");
+
                     b.HasOne("Construction.Shared.Entities.ProjectConstruction", "ProjectConstructions")
                         .WithMany()
                         .HasForeignKey("ProjectConstructionsId");
+
+                    b.Navigation("Duties");
 
                     b.Navigation("ProjectConstructions");
                 });
@@ -333,14 +344,14 @@ namespace Construction.API.Migrations
                     b.Navigation("ProjectConstructions");
                 });
 
-            modelBuilder.Entity("Construction.Shared.Entities.MaterialAssigment", b =>
+            modelBuilder.Entity("Construction.Shared.Entities.MaterialAssignment", b =>
                 {
                     b.HasOne("Construction.Shared.Entities.Dutie", "Duties")
-                        .WithMany("MaterialAssigments")
+                        .WithMany("MaterialAssignments")
                         .HasForeignKey("DutiesId");
 
                     b.HasOne("Construction.Shared.Entities.Material", "Materials")
-                        .WithMany("MaterialAssigments")
+                        .WithMany("MaterialAssignments")
                         .HasForeignKey("MaterialsId");
 
                     b.Navigation("Duties");
@@ -355,12 +366,12 @@ namespace Construction.API.Migrations
 
             modelBuilder.Entity("Construction.Shared.Entities.Dutie", b =>
                 {
-                    b.Navigation("MaterialAssigments");
+                    b.Navigation("MaterialAssignments");
                 });
 
             modelBuilder.Entity("Construction.Shared.Entities.Material", b =>
                 {
-                    b.Navigation("MaterialAssigments");
+                    b.Navigation("MaterialAssignments");
                 });
 
             modelBuilder.Entity("Construction.Shared.Entities.ProjectConstruction", b =>

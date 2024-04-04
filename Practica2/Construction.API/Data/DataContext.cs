@@ -16,6 +16,10 @@ namespace Construction.API.Data
         public DbSet<Equipment> Equipments { get; set; }
         public DbSet<Budget> Budgets { get; set; }
 
+        public DbSet<MaterialAssignment> MaterialAssignments { get; set; }
+
+        public DbSet<EquipmentAssignment> EquipmentAssignments { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

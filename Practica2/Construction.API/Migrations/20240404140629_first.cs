@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Construction.API.Migrations
 {
     /// <inheritdoc />
-    public partial class First : Migration
+    public partial class first : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -93,7 +93,7 @@ namespace Construction.API.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "EquipmentAssignment",
+                name: "EquipmentAssignments",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -103,37 +103,14 @@ namespace Construction.API.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EquipmentAssignment", x => x.Id);
+                    table.PrimaryKey("PK_EquipmentAssignments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_EquipmentAssignment_ConstructionTeams_ConstructionTeamsId",
+                        name: "FK_EquipmentAssignments_ConstructionTeams_ConstructionTeamsId",
                         column: x => x.ConstructionTeamsId,
                         principalTable: "ConstructionTeams",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_EquipmentAssignment_ProjectConstructions_ProjectConstructionsId",
-                        column: x => x.ProjectConstructionsId,
-                        principalTable: "ProjectConstructions",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Equipments",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    Capacity = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    MaintenanceState = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Availability = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Remarks = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ProjectConstructionsId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Equipments", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Equipments_ProjectConstructions_ProjectConstructionsId",
+                        name: "FK_EquipmentAssignments_ProjectConstructions_ProjectConstructionsId",
                         column: x => x.ProjectConstructionsId,
                         principalTable: "ProjectConstructions",
                         principalColumn: "Id");
@@ -162,7 +139,36 @@ namespace Construction.API.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "MaterialAssigment",
+                name: "Equipments",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Capacity = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    MaintenanceState = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Availability = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Remarks = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ProjectConstructionsId = table.Column<int>(type: "int", nullable: true),
+                    DutiesId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Equipments", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Equipments_Duties_DutiesId",
+                        column: x => x.DutiesId,
+                        principalTable: "Duties",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Equipments_ProjectConstructions_ProjectConstructionsId",
+                        column: x => x.ProjectConstructionsId,
+                        principalTable: "ProjectConstructions",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MaterialAssignments",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -172,14 +178,14 @@ namespace Construction.API.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MaterialAssigment", x => x.Id);
+                    table.PrimaryKey("PK_MaterialAssignments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_MaterialAssigment_Duties_DutiesId",
+                        name: "FK_MaterialAssignments_Duties_DutiesId",
                         column: x => x.DutiesId,
                         principalTable: "Duties",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_MaterialAssigment_Materials_MaterialsId",
+                        name: "FK_MaterialAssignments_Materials_MaterialsId",
                         column: x => x.MaterialsId,
                         principalTable: "Materials",
                         principalColumn: "Id");
@@ -196,14 +202,19 @@ namespace Construction.API.Migrations
                 column: "ProjectConstructionsId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EquipmentAssignment_ConstructionTeamsId",
-                table: "EquipmentAssignment",
+                name: "IX_EquipmentAssignments_ConstructionTeamsId",
+                table: "EquipmentAssignments",
                 column: "ConstructionTeamsId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EquipmentAssignment_ProjectConstructionsId",
-                table: "EquipmentAssignment",
+                name: "IX_EquipmentAssignments_ProjectConstructionsId",
+                table: "EquipmentAssignments",
                 column: "ProjectConstructionsId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Equipments_DutiesId",
+                table: "Equipments",
+                column: "DutiesId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Equipments_ProjectConstructionsId",
@@ -211,13 +222,13 @@ namespace Construction.API.Migrations
                 column: "ProjectConstructionsId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MaterialAssigment_DutiesId",
-                table: "MaterialAssigment",
+                name: "IX_MaterialAssignments_DutiesId",
+                table: "MaterialAssignments",
                 column: "DutiesId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MaterialAssigment_MaterialsId",
-                table: "MaterialAssigment",
+                name: "IX_MaterialAssignments_MaterialsId",
+                table: "MaterialAssignments",
                 column: "MaterialsId");
 
             migrationBuilder.CreateIndex(
@@ -233,13 +244,13 @@ namespace Construction.API.Migrations
                 name: "Budgets");
 
             migrationBuilder.DropTable(
-                name: "EquipmentAssignment");
+                name: "EquipmentAssignments");
 
             migrationBuilder.DropTable(
                 name: "Equipments");
 
             migrationBuilder.DropTable(
-                name: "MaterialAssigment");
+                name: "MaterialAssignments");
 
             migrationBuilder.DropTable(
                 name: "ConstructionTeams");
