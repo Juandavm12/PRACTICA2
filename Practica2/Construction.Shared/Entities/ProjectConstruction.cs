@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Construction.Shared.Entities
@@ -35,6 +36,12 @@ namespace Construction.Shared.Entities
         public DateTime EstimatedEndTime { get; set; }
 
         public string Remarks { get; set; }
+
+
+        //Reference to M*M table
+        [JsonIgnore]
+        public ICollection<EquipmentAssignment> EquipmentAssignments { get; set; }
+
 
     }
 }

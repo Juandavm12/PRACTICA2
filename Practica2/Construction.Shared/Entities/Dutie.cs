@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Construction.Shared.Entities
@@ -31,6 +32,13 @@ namespace Construction.Shared.Entities
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         public DateTime EndTime { get; set; }
 
-        public string Remarks { get; set; } 
+        public string Remarks { get; set; }
+
+        //Reference to M*M table
+        [JsonIgnore]
+        public ICollection<MaterialAssigment> MaterialAssigments { get; set; }
+
+        //object creation to assign FK in the database
+        public ProjectConstruction ProjectConstructions { get; set; }
     }
 }

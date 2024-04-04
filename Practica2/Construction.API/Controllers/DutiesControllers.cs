@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Construction.API.Controllers
 {
     [ApiController]
-    [Route("/api/duties")]
+    [Route("/api/Duties")]
     public class DutiesControllers : ControllerBase
     {
         private readonly DataContext _context;

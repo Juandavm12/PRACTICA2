@@ -34,5 +34,8 @@ namespace Construction.Shared.Entities
         public double BudgetTotal { get; set; }      
 
         public string Remarks { get; set; }
+
+        //object creation to assign FK in the database
+        public ProjectConstruction ProjectConstructions { get; set; }
     }
 }
