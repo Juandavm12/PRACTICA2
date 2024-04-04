@@ -39,6 +39,8 @@ namespace Construction.Shared.Entities
         public ICollection<MaterialAssigment> MaterialAssigments { get; set; }
 
         //object creation to assign FK in the database
+
+        [JsonIgnore]
         public ProjectConstruction ProjectConstructions { get; set; }
     }
 }

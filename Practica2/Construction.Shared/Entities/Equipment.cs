@@ -47,6 +47,8 @@ namespace Construction.Shared.Entities
 
 
         //object creation to assign FK in the database
+
+        [JsonIgnore]
         public ProjectConstruction ProjectConstructions { get; set; }
 
 
