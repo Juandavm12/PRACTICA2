@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Construction.Shared.Entities
 {
-    public class MaterialAssigment
+    public class MaterialAssignment
     {
 
         //Attributes

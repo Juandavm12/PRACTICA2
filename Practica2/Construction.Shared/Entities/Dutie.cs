@@ -36,7 +36,7 @@ namespace Construction.Shared.Entities
 
         //Reference to M*M table
         [JsonIgnore]
-        public ICollection<MaterialAssigment> MaterialAssigments { get; set; }
+        public ICollection<MaterialAssignment> MaterialAssignments { get; set; }
 
         //object creation to assign FK in the database
 
