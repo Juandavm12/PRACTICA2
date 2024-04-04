@@ -52,6 +52,8 @@ namespace Construction.Shared.Entities
         public ProjectConstruction ProjectConstructions { get; set; }
 
 
+        [JsonIgnore]
+        public Dutie Duties { get; set; }
 
     }
 }
