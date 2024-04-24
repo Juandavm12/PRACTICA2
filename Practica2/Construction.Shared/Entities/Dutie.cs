@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
@@ -38,9 +39,13 @@ namespace Construction.Shared.Entities
         [JsonIgnore]
         public ICollection<MaterialAssignment> MaterialAssignments { get; set; }
 
-        //object creation to assign FK in the database
+        //object creation to assign FK in the database        
+      
 
+        [ForeignKey("ProjectConstructionsId")]
         [JsonIgnore]
         public ProjectConstruction ProjectConstructions { get; set; }
+        public int? ProjectConstructionsId { get; set; }
+
     }
 }

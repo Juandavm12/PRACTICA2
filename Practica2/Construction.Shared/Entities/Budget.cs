@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
@@ -14,7 +15,7 @@ namespace Construction.Shared.Entities
 
         public int Id { get; set; }
 
-        [Display(Name = "Presupuesto equipo de construccion ")]       
+        [Display(Name = "Presupuesto equipo de construccion ")]
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         public double BudgetConstructionTeam { get; set; }
 
@@ -32,14 +33,18 @@ namespace Construction.Shared.Entities
 
         [Display(Name = "Presupuesto total ")]
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
-        public double BudgetTotal { get; set; }      
+        public double BudgetTotal { get; set; }
 
         public string Remarks { get; set; }
 
 
         //object creation to assign FK in the database
 
+
+        [ForeignKey("ProjectConstructionsId")]
         [JsonIgnore]
         public ProjectConstruction ProjectConstructions { get; set; }
+        public int? ProjectConstructionsId { get; set; }
+
     }
 }
