@@ -1,4 +1,4 @@
-﻿@page "/Budgets"
+﻿@page "/ProjectConstructions"
 @using Construction.Shared.Entities
 @using Construction.WEB.Repositories
 @using Construction.WEB.Shared
@@ -7,46 +7,43 @@
 
 <h1>Budgets Index</h1>
 <div class="mb-3">
-    <a class="btn btn-primary" href="/budgets/create">New Budget</a>
+    <a class="btn btn-primary" href="/projectconstructions/create">New Project Construction</a>
 </div>
 
-<GenericList MyList="Budgets">
+<GenericList MyList="ProjectConstructions">
 
     <Body>
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Budget</th>
+                    <th>ProjectConstruction</th>
                     <th></th>
 
                 </tr>
             </thead>
             <tbody>
-                @foreach (var budget in Budgets!)
+                @foreach (var projectconstruction in ProjectConstructions!)
                 {
                     <tr>
                         <td>
-                            @budget.BudgetConstructionTeam
+                            @projectconstruction.Name
                         </td>
                         <td>
-                            @budget.BudgetDutie
+                            @projectconstruction.Address
                         </td>
                         <td>
-                            @budget.BudgetEquipment
-                            </td>
-                            <td>
-                            @budget.BudgetProyectConstruction
+                            @projectconstruction.Description
                         </td>
                         <td>
-                            @budget.BudgetTotal
-                            </td>
-                        <td>
-                            @budget.Remarks
-                            </td>
-                        <td>
-                            @budget.ProjectConstructionsId
+                            @projectconstruction.StartTime
                         </td>
-                      
+                        <td>
+                            @projectconstruction.EstimatedEndTime
+                        </td>
+                        <td>
+                            @projectconstruction.Remarks
+                        </td>
+
                         <td>
                             <a class="btn btn-warning">Editar</a>
                             <button class="btn btn-danger">Borrar</button>
@@ -58,21 +55,21 @@
         </table>
 
     </Body>
- 
+
 </GenericList>
 
 
 
 @code {
 
-    public List<Budget> Budgets { get; set; }
+    public List<ProjectConstruction> ProjectConstructions { get; set; }
 
     protected async override Task OnInitializedAsync()
     {
 
-        var responseHttp = await Repository.GetAsync<List<Budget>>("/api/budgets");
+        var responseHttp = await Repository.GetAsync<List<ProjectConstruction>>("/api/projectconstructions");
 
-        Budgets = responseHttp.Response!;
+        ProjectConstructions = responseHttp.Response!;
 
 
 
@@ -81,3 +78,4 @@
 
 
 }
+

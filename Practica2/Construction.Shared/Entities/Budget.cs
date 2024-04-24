@@ -19,7 +19,7 @@ namespace Construction.Shared.Entities
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         public double BudgetConstructionTeam { get; set; }
 
-        [Display(Name = "Presupuesto ede tareas ")]
+        [Display(Name = "Presupuesto de tareas ")]
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         public double BudgetDutie { get; set; }
 

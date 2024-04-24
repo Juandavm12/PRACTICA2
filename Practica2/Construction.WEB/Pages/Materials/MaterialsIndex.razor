@@ -1,52 +1,47 @@
-﻿@page "/Budgets"
+﻿@page "/Materials"
 @using Construction.Shared.Entities
 @using Construction.WEB.Repositories
 @using Construction.WEB.Shared
 @inject IRepository Repository
 
 
-<h1>Budgets Index</h1>
+<h1>Materials Index</h1>
 <div class="mb-3">
-    <a class="btn btn-primary" href="/budgets/create">New Budget</a>
+    <a class="btn btn-primary" href="/materials/create">New Materials</a>
 </div>
 
-<GenericList MyList="Budgets">
+<GenericList MyList="Materials">
 
     <Body>
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Budget</th>
+                    <th>Material</th>
                     <th></th>
 
                 </tr>
             </thead>
             <tbody>
-                @foreach (var budget in Budgets!)
+                @foreach (var material in Materials!)
                 {
                     <tr>
                         <td>
-                            @budget.BudgetConstructionTeam
+                            @material.Name
                         </td>
                         <td>
-                            @budget.BudgetDutie
+                            @material.RequiredQuantity
                         </td>
                         <td>
-                            @budget.BudgetEquipment
-                            </td>
-                            <td>
-                            @budget.BudgetProyectConstruction
+                            @material.Supplier
                         </td>
                         <td>
-                            @budget.BudgetTotal
-                            </td>
-                        <td>
-                            @budget.Remarks
-                            </td>
-                        <td>
-                            @budget.ProjectConstructionsId
+                            @material.EstimatedDeliveryTime
                         </td>
-                      
+                        <td>
+                            @material.ProjectConstructionsId
+                        </td>
+                       
+
                         <td>
                             <a class="btn btn-warning">Editar</a>
                             <button class="btn btn-danger">Borrar</button>
@@ -58,21 +53,21 @@
         </table>
 
     </Body>
- 
+
 </GenericList>
 
 
 
 @code {
 
-    public List<Budget> Budgets { get; set; }
+    public List<Material> Materials { get; set; }
 
     protected async override Task OnInitializedAsync()
     {
 
-        var responseHttp = await Repository.GetAsync<List<Budget>>("/api/budgets");
+        var responseHttp = await Repository.GetAsync<List<Material>>("/api/materials");
 
-        Budgets = responseHttp.Response!;
+        Materials = responseHttp.Response!;
 
 
 

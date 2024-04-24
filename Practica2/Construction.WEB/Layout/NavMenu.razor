@@ -19,13 +19,49 @@
                 <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Budgets
             </NavLink>
         </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="ConstructionTeams">
+                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Construction Teams
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="Duties">
+                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Duties
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="Equipments">
+                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Equipments
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="EquipmentAssignments">
+                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Equipment Assignments
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="Materials">
+                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Materials
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="MaterialAssignments">
+                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Material Assignments
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="ProjectConstructions">
+                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Project Construction
+            </NavLink>
+        </div>
+
     </nav>
 </div>
 
 @code {
     private bool collapseNavMenu = true;
 
-    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
 
     private void ToggleNavMenu()
     {

@@ -1,0 +1,49 @@
+﻿@page "/budgets/create"
+@inject IRepository repository
+@inject NavigationManager navigationManager
+@inject SweetAlertService sweetAlertService
+
+
+<h3>Budget Create</h3>
+
+<BudgetForm @ref="budgetForm" Budget="budget" OnSubmit="Create" ReturnAction="Return" />
+
+
+@code {
+    private Budget budget = new();
+    private BudgetForm budgetForm;
+
+    private async Task Create()
+    {
+        var responseHttp = await repository.Post("/api/budgets", budget);
+
+        if (responseHttp.Error)
+        {
+            var message = await responseHttp.GetErrorMessage();
+            await sweetAlertService.FireAsync("Error", message);
+            return;
+        }
+        Return();
+
+        var Toast = sweetAlertService.Mixin(new SweetAlertOptions
+            {
+
+            Toast = true,
+            Position = SweetAlertPosition.BottomEnd,
+             ShowConfirmButton = true,
+            Timer = 3000
+
+            });
+
+        await Toast.FireAsync(icon: SweetAlertIcon.Success, message: "Registro creado con exito");
+
+    }
+
+    private void Return()
+    {
+
+        navigationManager.NavigateTo("/budgets");
+
+    }
+
+}

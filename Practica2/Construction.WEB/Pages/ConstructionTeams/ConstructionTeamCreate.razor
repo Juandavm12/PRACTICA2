@@ -1,0 +1,49 @@
+﻿@page "/constructionteams/create"
+@inject IRepository repository
+@inject NavigationManager navigationManager
+@inject SweetAlertService sweetAlertService
+
+
+<h3>Construction Teams Create</h3>
+
+<ConstructionTeamForm @ref="constructionTeamForm" ConstructionTeam="constructionTeam" OnSubmit="Create" ReturnAction="Return" />
+
+
+@code {
+    private ConstructionTeam constructionTeam = new();
+    private ConstructionTeamForm constructionTeamForm;
+
+    private async Task Create()
+    {
+        var responseHttp = await repository.Post("/api/constructionteams", constructionTeam);
+
+        if (responseHttp.Error)
+        {
+            var message = await responseHttp.GetErrorMessage();
+            await sweetAlertService.FireAsync("Error", message);
+            return;
+        }
+        Return();
+
+        var Toast = sweetAlertService.Mixin(new SweetAlertOptions
+            {
+
+            Toast = true,
+            Position = SweetAlertPosition.BottomEnd,
+             ShowConfirmButton = true,
+            Timer = 3000
+
+            });
+
+        await Toast.FireAsync(icon: SweetAlertIcon.Success, message: "Registro creado con exito");
+
+    }
+
+    private void Return()
+    {
+
+        navigationManager.NavigateTo("/constructionteams");
+
+    }
+
+}

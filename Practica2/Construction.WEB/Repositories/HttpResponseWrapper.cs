@@ -4,7 +4,7 @@ namespace Construction.WEB.Repositories
 {
     public class HttpResponseWrapper<T>
     {
-        public HttpResponseWrapper(T? response, bool error, HttpResponseMessage httpResponseMessage)
+        public HttpResponseWrapper(T response, bool error, HttpResponseMessage httpResponseMessage)
         {
             Error = error;
             Response = response;
@@ -13,11 +13,11 @@ namespace Construction.WEB.Repositories
 
         public bool Error { get; set; }
 
-        public T? Response { get; set; }
+        public T Response { get; set; }
 
         public HttpResponseMessage HttpResponseMessage { get; set; }
 
-        public async Task<string?> GetErrorMessage()
+        public async Task<string> GetErrorMessage()
         {
             if (!Error)
             {

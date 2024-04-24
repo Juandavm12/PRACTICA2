@@ -1,0 +1,74 @@
+﻿
+<EditForm Model="Budget" OnSubmit="OnSubmit">
+
+    <DataAnnotationsValidator/>
+
+    <div class="mb-3">
+        <label>Presupuesto equipo de construccion</label>
+        <div>
+            <InputNumber width="10" @bind-Value="@Budget.BudgetConstructionTeam"></InputNumber>
+            <ValidationMessage For="@(() => @Budget.BudgetConstructionTeam)" />
+
+        </div>
+        <label>Presupuesto de tareas</label>
+        <div>
+            <InputNumber width="10" @bind-Value="@Budget.BudgetDutie"></InputNumber>
+            <ValidationMessage For="@(() => @Budget.BudgetDutie)" />
+
+        </div>
+        <label>Presupuesto de maquinaria</label>
+        <div>
+            <InputNumber width="10" @bind-Value="@Budget.BudgetEquipment"></InputNumber>
+            <ValidationMessage For="@(() => @Budget.BudgetEquipment)" />
+
+        </div>
+        <label>Presupuesto proyecto de construccion</label>
+        <div>
+            <InputNumber width="10" @bind-Value="@Budget.BudgetProyectConstruction"></InputNumber>
+            <ValidationMessage For="@(() => @Budget.BudgetProyectConstruction)" />
+
+        </div>
+        <label>Presupuesto total</label>
+        <div>
+            <InputNumber width="10" @bind-Value="@Budget.BudgetTotal"></InputNumber>
+            <ValidationMessage For="@(() => @Budget.BudgetTotal)" />
+
+        </div>
+        <label>Comentarios</label>
+        <div>
+            <InputText width="10" @bind-Value="@Budget.Remarks"></InputText>
+            <ValidationMessage For="@(() => @Budget.Remarks)" />
+            
+        </div>
+    </div>
+
+    <button class="btn btn-primary" type="submit">Guardar</button>
+    <button class="btn btn-success" onclick="R">Regresar</button>
+    <button class="btn btn-info" type="reset">Limpiar</button>
+
+
+
+
+</EditForm>
+
+
+
+
+@code {
+
+
+    [EditorRequired]
+    [Parameter]
+    public Budget Budget { get; set; }
+
+
+    [EditorRequired]
+    [Parameter]
+    public EventCallback OnSubmit { get; set; }
+
+
+    [EditorRequired]
+    [Parameter]
+    public EventCallback ReturnAction { get; set; }
+
+}}

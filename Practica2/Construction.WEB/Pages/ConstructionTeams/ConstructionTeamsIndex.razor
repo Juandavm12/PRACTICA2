@@ -1,51 +1,44 @@
-﻿@page "/Budgets"
+﻿@page "/ConstructionTeams"
 @using Construction.Shared.Entities
 @using Construction.WEB.Repositories
 @using Construction.WEB.Shared
 @inject IRepository Repository
 
+<h1>Construction Teams Index</h1>
 
-<h1>Budgets Index</h1>
+
 <div class="mb-3">
-    <a class="btn btn-primary" href="/budgets/create">New Budget</a>
+    <a class="btn btn-primary" href="/constructionteams/create">New Construction Team</a>
 </div>
 
-<GenericList MyList="Budgets">
+<GenericList MyList="ConstructionTeams">
 
     <Body>
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Budget</th>
+                    <th>ConstructionTeam</th>
                     <th></th>
 
                 </tr>
             </thead>
             <tbody>
-                @foreach (var budget in Budgets!)
+                @foreach (var constructionteam in ConstructionTeams!)
                 {
                     <tr>
                         <td>
-                            @budget.BudgetConstructionTeam
+                            @constructionteam.Name
                         </td>
                         <td>
-                            @budget.BudgetDutie
+                            @constructionteam.Specialties
                         </td>
                         <td>
-                            @budget.BudgetEquipment
+                            @constructionteam.MembersList
                             </td>
                             <td>
-                            @budget.BudgetProyectConstruction
+                            @constructionteam.Remarks
                         </td>
-                        <td>
-                            @budget.BudgetTotal
-                            </td>
-                        <td>
-                            @budget.Remarks
-                            </td>
-                        <td>
-                            @budget.ProjectConstructionsId
-                        </td>
+                       
                       
                         <td>
                             <a class="btn btn-warning">Editar</a>
@@ -61,23 +54,19 @@
  
 </GenericList>
 
-
-
 @code {
 
-    public List<Budget> Budgets { get; set; }
+    public List<ConstructionTeam> ConstructionTeams { get; set; }
 
     protected async override Task OnInitializedAsync()
     {
 
-        var responseHttp = await Repository.GetAsync<List<Budget>>("/api/budgets");
+        var responseHttp = await Repository.GetAsync<List<ConstructionTeam>>("/api/constructionteams");
 
-        Budgets = responseHttp.Response!;
+        ConstructionTeams = responseHttp.Response!;
 
 
 
     }
-
-
 
 }
