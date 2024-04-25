@@ -1,0 +1,73 @@
+﻿<EditForm Model="ProjectConstruction" OnSubmit="OnSubmit">
+
+    <DataAnnotationsValidator />
+
+    <div class="mb-3">
+        <label>Nombre</label>
+        <div>
+            <InputText width="10" @bind-Value="@ProjectConstruction.Name"></InputText>
+            <ValidationMessage For="@(() => @ProjectConstruction.Name)" />
+        </div>
+        <label>Direccion</label>
+        <div>
+            <InputText width="10" @bind-Value="@ProjectConstruction.Address"></InputText>
+            <ValidationMessage For="@(() => @ProjectConstruction.Address)" />
+        </div>
+        <label>Descripcion</label>
+        <div>
+            <InputText width="10" @bind-Value="@ProjectConstruction.Description"></InputText>
+            <ValidationMessage For="@(() => @ProjectConstruction.Description)" />
+        </div>
+        <label>Tiempo de Comienzo</label>
+        <div>
+            <InputDate width="10" @bind-Value="@ProjectConstruction.StartTime"></InputDate>
+            <ValidationMessage For="@(() => @ProjectConstruction.StartTime)" />
+        </div>
+        <label>Tiempo Estimado de Finalizacion</label>
+        <div>
+            <InputDate width="10" @bind-Value="@ProjectConstruction.EstimatedEndTime"></InputDate>
+            <ValidationMessage For="@(() => @ProjectConstruction.EstimatedEndTime)" />
+        </div>
+        <label>Comentarios</label>
+        <div>
+            <InputText width="10" @bind-Value="@ProjectConstruction.Remarks"></InputText>
+            <ValidationMessage For="@(() => @ProjectConstruction.Remarks)" />
+        </div>
+
+
+    
+    </div>
+
+    <button class="btn btn-primary" type="submit">Guardar</button>
+
+    <button class="btn btn-success" @onclick="ReturnAction">Regresar</button>
+
+    <button class="btn btn-info" type="reset">Limpiar</button>
+
+
+
+
+</EditForm>
+
+
+
+
+@code {
+
+
+    [EditorRequired]
+    [Parameter]
+    public ProjectConstruction ProjectConstruction { get; set; }
+
+
+    [EditorRequired]
+    [Parameter]
+    public EventCallback OnSubmit { get; set; }
+
+
+    [EditorRequired]
+    [Parameter]
+    public EventCallback ReturnAction { get; set; }
+
+
+}

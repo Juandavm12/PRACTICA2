@@ -1,0 +1,51 @@
+﻿<EditForm Model="EquipmentAssignment" OnSubmit="OnSubmit">
+
+    <DataAnnotationsValidator />
+
+    <div class="mb-3">
+        <label>Id del equipo de construccion</label>
+        <div>
+            <InputNumber width="10" @bind-Value="@EquipmentAssignment.ConstructionTeamsId"></InputNumber>
+            <ValidationMessage For="@(() => @EquipmentAssignment.ConstructionTeamsId)" />
+        </div>
+        <label>Id del proyecto de construccion</label>
+        <div>
+            <InputNumber width="10" @bind-Value="@EquipmentAssignment.ProjectConstructionsId"></InputNumber>
+            <ValidationMessage For="@(() => @EquipmentAssignment.ProjectConstructionsId)" />
+        </div>
+        
+    </div>
+
+    <button class="btn btn-primary" type="submit">Guardar</button>
+
+    <button class="btn btn-success" @onclick="ReturnAction">Regresar</button>
+
+    <button class="btn btn-info" type="reset">Limpiar</button>
+
+
+
+
+</EditForm>
+
+
+
+
+@code {
+
+
+    [EditorRequired]
+    [Parameter]
+    public EquipmentAssignment EquipmentAssignment { get; set; }
+
+
+    [EditorRequired]
+    [Parameter]
+    public EventCallback OnSubmit { get; set; }
+
+
+    [EditorRequired]
+    [Parameter]
+    public EventCallback ReturnAction { get; set; }
+
+
+}

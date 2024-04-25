@@ -1,0 +1,75 @@
+﻿<EditForm Model="Equipment" OnSubmit="OnSubmit">
+
+    <DataAnnotationsValidator />
+
+    <div class="mb-3">
+        <label>Nombre</label>
+        <div>
+            <InputText width="10" @bind-Value="@Equipment.Name"></InputText>
+            <ValidationMessage For="@(() => @Equipment.Name)" />
+        </div>
+        <label>Capacidad</label>
+        <div>
+            <InputText width="10" @bind-Value="@Equipment.Capacity"></InputText>
+            <ValidationMessage For="@(() => @Equipment.Capacity)" />
+        </div>
+        <label>Estado del Mantenimiento</label>
+        <div>
+            <InputText width="10" @bind-Value="@Equipment.MaintenanceState"></InputText>
+            <ValidationMessage For="@(() => @Equipment.MaintenanceState)" />
+        </div>
+        <label>Disponibilidad</label>
+        <div>
+            <InputText width="10" @bind-Value="@Equipment.Availability"></InputText>
+            <ValidationMessage For="@(() => @Equipment.Availability)" />
+        </div>
+        <label>Comentarios</label>
+        <div>
+            <InputText width="10" @bind-Value="@Equipment.Remarks"></InputText>
+            <ValidationMessage For="@(() => @Equipment.Remarks)" />
+        </div>
+        <label>Id del Proyecto de Construccion</label>
+        <div>
+            <InputNumber width="10" @bind-Value="@Equipment.ProjectConstructionsId"></InputNumber>
+            <ValidationMessage For="@(() => @Equipment.ProjectConstructionsId)" />
+        </div>
+        <label>Id de la tarea</label>
+        <div>
+            <InputNumber width="10" @bind-Value="@Equipment.DutiesId"></InputNumber>
+            <ValidationMessage For="@(() => @Equipment.DutiesId)" />
+        </div>                
+    </div>
+
+    <button class="btn btn-primary" type="submit">Guardar</button>
+
+    <button class="btn btn-success" @onclick="ReturnAction">Regresar</button>
+
+    <button class="btn btn-info" type="reset">Limpiar</button>
+
+
+
+
+</EditForm>
+
+
+
+
+@code {
+
+
+    [EditorRequired]
+    [Parameter]
+    public Equipment Equipment { get; set; }
+
+
+    [EditorRequired]
+    [Parameter]
+    public EventCallback OnSubmit { get; set; }
+
+
+    [EditorRequired]
+    [Parameter]
+    public EventCallback ReturnAction { get; set; }
+
+
+}

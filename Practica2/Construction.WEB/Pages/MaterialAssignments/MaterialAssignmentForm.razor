@@ -1,0 +1,51 @@
+﻿<EditForm Model="MaterialAssignment" OnSubmit="OnSubmit">
+
+    <DataAnnotationsValidator />
+
+    <div class="mb-3">
+        <label>Id del material</label>
+        <div>
+            <InputNumber width="10" @bind-Value="@MaterialAssignment.MaterialsId"></InputNumber>
+            <ValidationMessage For="@(() => @MaterialAssignment.MaterialsId)" />
+        </div>
+        <label>Id de la tarea</label>
+        <div>
+            <InputNumber width="10" @bind-Value="@MaterialAssignment.DutiesId"></InputNumber>
+            <ValidationMessage For="@(() => @MaterialAssignment.DutiesId)" />
+        </div>
+       
+    </div>
+
+    <button class="btn btn-primary" type="submit">Guardar</button>
+
+    <button class="btn btn-success" @onclick="ReturnAction">Regresar</button>
+
+    <button class="btn btn-info" type="reset">Limpiar</button>
+
+
+
+
+</EditForm>
+
+
+
+
+@code {
+
+
+    [EditorRequired]
+    [Parameter]
+    public MaterialAssignment MaterialAssignment { get; set; }
+
+
+    [EditorRequired]
+    [Parameter]
+    public EventCallback OnSubmit { get; set; }
+
+
+    [EditorRequired]
+    [Parameter]
+    public EventCallback ReturnAction { get; set; }
+
+
+}

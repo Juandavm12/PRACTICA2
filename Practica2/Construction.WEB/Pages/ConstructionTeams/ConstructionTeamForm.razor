@@ -28,7 +28,9 @@
     </div>
 
     <button class="btn btn-primary" type="submit">Guardar</button>
-    <button class="btn btn-success" onclick="R">Regresar</button>
+
+    <button class="btn btn-success" @onclick="ReturnAction">Regresar</button>
+
     <button class="btn btn-info" type="reset">Limpiar</button>
 
 
@@ -54,4 +56,4 @@
     [Parameter]
     public EventCallback ReturnAction { get; set; }
 
-}}
+}

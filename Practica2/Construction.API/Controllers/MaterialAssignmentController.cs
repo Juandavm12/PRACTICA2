@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Construction.API.Controllers
 {
     [ApiController]
-    [Route("/api/MateriallAssignments")]
+    [Route("/api/MaterialAssignments")]
     public class MaterialAssignmentControllers : ControllerBase
     {
 

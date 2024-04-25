@@ -1,21 +1,21 @@
-﻿@page "/constructionteams/create"
+﻿@page "/materials/create"
 @inject IRepository repository
 @inject NavigationManager navigationManager
 @inject SweetAlertService sweetAlertService
 
 
-<h3>Construction Team Create</h3>
+<h3>Materials Create</h3>
 
-<ConstructionTeamForm @ref="constructionTeamForm" ConstructionTeam="constructionTeam" OnSubmit="Create" ReturnAction="Return" />
+<MaterialForm @ref="materialForm" Material="material" OnSubmit="Create" ReturnAction="Return" />
 
 
 @code {
-    private ConstructionTeam constructionTeam = new();
-    private ConstructionTeamForm constructionTeamForm;
+    private Material material = new();
+    private MaterialForm materialForm;
 
     private async Task Create()
     {
-        var responseHttp = await repository.Post("/api/constructionteams", constructionTeam);
+        var responseHttp = await repository.Post("/api/materials", material);
 
         if (responseHttp.Error)
         {
@@ -42,7 +42,7 @@
     private void Return()
     {
 
-        navigationManager.NavigateTo("/constructionteams");
+        navigationManager.NavigateTo("/materials");
 
     }
 
